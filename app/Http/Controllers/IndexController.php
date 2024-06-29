@@ -12,7 +12,7 @@ class IndexController extends Controller
      */
     public function index()
      {
-         $products = Product::inRandomOrder()->take(6)->get();
+         $products = Product::inRandomOrder()->take(8)->get();
 //         dd($products);
          return view('index',compact('products'));
      }

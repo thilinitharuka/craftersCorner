@@ -29,7 +29,7 @@
 <body class="login-page" style="min-height: 496.8px;">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <a href="../../index2.html"><b>Crafters' Corner</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

@@ -56,10 +56,10 @@
                     <div class="form-group">
                         <label for="productCategory">Category</label>
                         <select class="form-control" name="productCategory">
-                            <option value="electronics">Personalized Creations</option>
-                            <option value="clothing">Home Deco</option>
-                            <option value="home">Gifts and Souvenirs</option>
-                            <option value="beauty">Stationery and Paper Good</option>
+                            <option value="electronics">Customized Crafts/Gifts</option>
+                            <option value="clothing">Wall Art</option>
+                            <option value="home">Bags & Baskets</option>
+                            <option value="beauty">Paper Quilling Arts</option>
                             <!-- Add more options based on your specific categories -->
                         </select>
                     </div>
