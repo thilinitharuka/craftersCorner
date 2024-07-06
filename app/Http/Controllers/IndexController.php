@@ -11,13 +11,11 @@ class IndexController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $products = Product::inRandomOrder()->take(8)->get();
-        $cart = session('cart');
-        $totItemCount = !empty($cart) ? array_sum(array_column($cart, 'quantity')) : 0;
-//        var_dump($cart);die;
-        return view('index',compact('products','totItemCount'));
-    }
+     {
+         $products = Product::inRandomOrder()->take(8)->get();
+//         dd($products);
+         return view('index',compact('products'));
+     }
 
 
     /**

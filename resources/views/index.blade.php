@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crafters' Corner - Home</title>
     <meta name="robots" content="index, follow" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Hmart-Smart Product eCommerce html Template">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('user_assets/images/favicon.ico')}}" />
@@ -36,7 +35,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col">
                         <div class="welcome-text">
-                            {{--                            <p>World Wide Completely Free Returns and Shipping</p>--}}
+{{--                            <p>World Wide Completely Free Returns and Shipping</p>--}}
                         </div>
                     </div>
                     <div class="col d-none d-lg-block">
@@ -44,23 +43,19 @@
                             <ul>
                                 <li><a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a></li>
                                 <li><a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i> crafters'corner@gmail.com</a></li>
-
-                                @guest
-                                    <li><a href="{{route('login')}}"><i class="fa fa-user"></i>Login</a></li>
-                                    <li><a href="{{route('register')}}"><i class="fa fa-user"></i>Register</a></li>
-                                @else
-                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account</a></li>
-                                    <li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-user"></i> Logout</a></li>
-                                @endguest
-
+                                <li>
+                                    @guest
+                                    <a href="{{route('login')}}"><i class="fa fa-user"></i>Login</a>
+                                    @else
+                                        <a href="my-account.html"><i class="fa fa-user"></i> Account</a>
+                                    @endguest
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <form style="display: none;" id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" class="d-none">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">                </form>
         <!-- Header top area end -->
         <!-- Header action area start -->
         <div class="header-bottom  d-none d-lg-block">
@@ -87,15 +82,9 @@
                                 <i class="pe-7s-like"></i>
                             </a>
                             <!-- Single Wedge End -->
-                            <a href="{{route('cart.index')}}" class="header-action-btn header-action-btn-cart pr-0">
+                            <a href="#offcanvas-cart" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                 <i class="pe-7s-shopbag"></i>
-                                <span id="itemCount" class="header-action-num">
-                                    @if(isset($totItemCount) )
-                                        {{ $totItemCount }}
-                                    @else
-                                        0
-                                    @endif
-                                </span>
+                                <span class="header-action-num">01</span>
                                 <!-- <span class="cart-amount">€30.00</span> -->
                             </a>
                             <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -235,6 +224,22 @@
                         <div class="content">
                             <a href="single-product.html" class="title">Modern Smart Phone</a>
                             <span class="quantity-price">1 x <span class="amount">$18.86</span></span>
+                            <a href="#" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.webp" alt="Cart product Image"></a>
+                        <div class="content">
+                            <a href="single-product.html" class="title">Bluetooth Headphone</a>
+                            <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
+                            <a href="#" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.webp" alt="Cart product Image"></a>
+                        <div class="content">
+                            <a href="single-product.html" class="title">Smart Music Box</a>
+                            <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
@@ -474,37 +479,37 @@
                         <div class="tab-pane fade show active" id="newarrivals">
                             <div class="row mb-n-30px">
                                 @foreach($products as $product)
-                                    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
-                                        <div class="product">
+                                <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                                    <div class="product">
                                             <span class="badges">
                                                 <span class="new">New</span>
                                             </span>
-                                            <div class="thumb">
-                                                <a href="single-product.html" class="image">
-                                                    <img style="width:270px;height: 274px;"  src="{{asset('storage/'.$product->image)}}" class="img-fluid" alt="">
-                                                    {{--                                             <img class="hover-image" src="assets/images/product-image/1.webp" alt="Product" />--}}
-                                                </a>
-                                            </div>
-                                            <div class="content">
-                                                <span class="category">{{ $product->category }}</span>
-                                                <h5 class="title">
-                                                    {{ $product->name }}
-                                                </h5>
-                                                <span class="price">
+                                        <div class="thumb">
+                                            <a href="single-product.html" class="image">
+                                                <img style="width:270px;height: 274px;"  src="{{asset('storage/'.$product->image)}}" class="img-fluid" alt="">
+{{--                                             <img class="hover-image" src="assets/images/product-image/1.webp" alt="Product" />--}}
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <span class="category">{{ $product->category }}</span>
+                                            <h5 class="title">
+                                              {{ $product->name }}
+                                            </h5>
+                                            <span class="price">
                                                     <span class="new">{{ $product->price }}</span>
                                                 </span>
-                                            </div>
-                                            <div class="actions">
-                                                <button onclick="addToCart('{{$product->id}}');" title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
-                                                        class="pe-7s-shopbag"></i></button>
-                                                <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
-                                                        class="pe-7s-like"></i></button>
-                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
-                                                {{--                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i--}}
-                                                {{--                                                    class="pe-7s-refresh-2"></i></button>--}}
-                                            </div>
+                                        </div>
+                                        <div class="actions">
+                                            <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                    class="pe-7s-shopbag"></i></button>
+                                            <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                    class="pe-7s-like"></i></button>
+                                            <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
+{{--                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i--}}
+{{--                                                    class="pe-7s-refresh-2"></i></button>--}}
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -608,13 +613,13 @@
                     <div class="line-shape-top line-height-1">
                         <div class="row flex-md-row-reverse align-items-center">
                             <div class="col-md-6 text-center text-md-end">
-                                {{--                                <div class="payment-mth"><a href="#"><img class="img img-fluid" src="assets/images/icons/payment.png" alt="payment-image"></a></div>--}}
+{{--                                <div class="payment-mth"><a href="#"><img class="img img-fluid" src="assets/images/icons/payment.png" alt="payment-image"></a></div>--}}
                             </div>
-                            {{--                            <div class="col-md-6 text-center text-md-start">--}}
-                            {{--                                <p class="copy-text"> © 2021 <strong>Hmart</strong> Made With <i class="fa fa-heart"--}}
-                            {{--                                                                                                 aria-hidden="true"></i> By <a class="company-name" href="https://themeforest.net/user/codecarnival/portfolio">--}}
-                            {{--                                        <strong> Codecarnival </strong></a>.</p>--}}
-                            {{--                            </div>--}}
+{{--                            <div class="col-md-6 text-center text-md-start">--}}
+{{--                                <p class="copy-text"> © 2021 <strong>Hmart</strong> Made With <i class="fa fa-heart"--}}
+{{--                                                                                                 aria-hidden="true"></i> By <a class="company-name" href="https://themeforest.net/user/codecarnival/portfolio">--}}
+{{--                                        <strong> Codecarnival </strong></a>.</p>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -759,12 +764,12 @@
                 <div class="tt-modal-messages">
                     <i class="pe-7s-check"></i> Added to cart successfully!
                 </div>
-                {{--<div class="tt-modal-product">
+                <div class="tt-modal-product">
                     <div class="tt-img">
                         <img src="assets/images/product-image/1.webp" alt="Modern Smart Phone">
                     </div>
                     <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>
-                </div>--}}
+                </div>
             </div>
         </div>
     </div>
@@ -830,23 +835,6 @@
 
 <!--Main JS (Common Activation Codes)-->
 <script src="{{asset('user_assets/js/main.js')}}"></script>
-<script>
-    function addToCart(productId){
-        $.ajax({
-            url:'cart/store',
-            type:'PUT',
-            data:{productId:productId},
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success:function(){
-                $('#exampleModal-Cart').modal('show')
-                var count = parseInt($('#itemCount').text())
-                $('#itemCount').text(count+1)
-            }
-        })
-    }
-</script>
 </body>
 
 </html>

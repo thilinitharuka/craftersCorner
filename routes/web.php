@@ -78,8 +78,3 @@ Route::put('/category/{category}', [\App\Http\Controllers\CategoryController::cl
 
 Route::get('/', [IndexController::class, 'index']);
 
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart'])
-    ->name('cart.index');
-Route::put('/cart/store', [\App\Http\Controllers\CartController::class, 'store'])
-    ->name('cart.store');
-
