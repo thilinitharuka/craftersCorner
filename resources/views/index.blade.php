@@ -43,13 +43,14 @@
                             <ul>
                                 <li><a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a></li>
                                 <li><a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i> crafters'corner@gmail.com</a></li>
-                                <li>
+
                                     @guest
-                                    <a href="{{route('login')}}"><i class="fa fa-user"></i>Login</a>
+                                    <li> <a href="{{route('login')}}"><i class="fa fa-user"></i>Login</a></li>
+                                    <li> <a href="{{route('register')}}"><i class="fa fa-user"></i>Register</a></li>
                                     @else
-                                        <a href="my-account.html"><i class="fa fa-user"></i> Account</a>
+                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account</a></li>
                                     @endguest
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -495,8 +496,8 @@
                                             <h5 class="title">
                                               {{ $product->name }}
                                             </h5>
-                                            <span class="price">
-                                                    <span class="new">{{ $product->price }}</span>
+                                            <span class="price" style="font-size: 12px;">
+                                                    <span class="new">Price: Rs.{{ $product->price }}</span>
                                                 </span>
                                         </div>
                                         <div class="actions">
