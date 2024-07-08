@@ -95,4 +95,9 @@ class UserController extends Controller
         // Redirect back to the user list or wherever you want
         return redirect()->back()->with('success', 'User deleted successfully!');
     }
+    public function user() {
+        return view('userindex');
+    }
 }
+
+

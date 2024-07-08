@@ -78,3 +78,9 @@ Route::put('/category/{category}', [\App\Http\Controllers\CategoryController::cl
 
 Route::get('/', [IndexController::class, 'index']);
 
+
+
+Route::get('/user', function () {
+    return view('user.userindex');
+});
+
