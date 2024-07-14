@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -49,11 +51,27 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function showChangePasswordForm()
     {
-
-
+        return view('auth.change-password');
     }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
+
+        auth()->user()->update(['password' => Hash::make($request->new_password)]);
+
+        return redirect()->route('password.change')->with('success', 'Password successfully changed!');
+    }
+
 
     /**
      * Show the form for editing the specified resource.

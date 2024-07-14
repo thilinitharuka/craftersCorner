@@ -10,17 +10,20 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('customer_status');
-            $table->timestamps();
-        });
+
+        {
+            Schema::create('customers', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Assuming you link customers to users
+                $table->string('firstName');
+                $table->string('lastName');
+                $table->string('address');
+                $table->string('city');
+                $table->string('zip_code');
+                $table->string('country')->default('Sri Lanka');
+                $table->string('phone_number');
+                $table->timestamps();
+            });
     }
 
     /**

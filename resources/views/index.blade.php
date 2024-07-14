@@ -48,7 +48,7 @@
                                     <li> <a href="{{route('login')}}"><i class="fa fa-user"></i>Login</a></li>
                                     <li> <a href="{{route('register')}}"><i class="fa fa-user"></i>Register</a></li>
                                     @else
-                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account</a></li>
+                                    <li><a href="/user"><i class="fa fa-user"></i> Account</a></li>
                                     @endguest
 
                             </ul>

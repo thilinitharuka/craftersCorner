@@ -3,6 +3,7 @@
 @extends('layouts.appUser')
 
 @section('content')
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -31,62 +32,68 @@
                     Success
                 </div>
             @endif
-            @if ($errors->any())
-                <div>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <!-- form start -->
-            <form method="post" action="{{ route('update.account',auth()->user()) }}">
+            <form method="post" action="{{ route('update.account') }}">
                 @csrf
-                @method('PUT')
+
                 <div class="card-body">
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstName">First Name</label>
-                            <input value="{{$customer->firstName ?? ''}}" type="text" class="form-control" name="firstName" placeholder="Enter Your First Name">
+                            <input type="text" class="form-control" name="firstName" placeholder="Enter Your First Name">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastName">Last Name</label>
-                            <input value="{{$customer->lastName?? '' }}" type="text" class="form-control" name="lastName" placeholder="Enter Your Last Name">
+                            <input type="text" class="form-control" name="lastName" placeholder="Enter Your Last Name">
                         </div>
                     </div>
                     <!-- Address Information -->
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input value="{{$customer->address ?? ''}}" type="text" class="form-control" name="address" placeholder="Enter Your Address">
+                        <input type="text" class="form-control" name="address" placeholder="Enter Your Address">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="city">City</label>
-                            <input value="{{$customer->city ?? ''}}" type="text" class="form-control" name="city" placeholder="Enter Your City">
+                            <input type="text" class="form-control" name="city" placeholder="Enter Your City">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="zipCode">ZIP Code</label>
-                            <input value="{{$customer->zip_code ?? ''}}" type="text" class="form-control" name="zipCode" placeholder="Enter Your ZIP Code">
+                            <input type="text" class="form-control" name="zipCode" placeholder="Enter Your ZIP Code">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input value="{{$user->email ?? ''}}" type="email" class="form-control" name="email" placeholder="Enter Your Email Address">
+                        <input type="email" class="form-control" name="email" placeholder="Enter Your Email Address">
                     </div>
                     <!-- Phone Number -->
                     <div class="form-group">
                         <label for="phone_number">Phone Number</label>
-                        <input value="{{$customer->phone_number ?? ''}}" type="text" class="form-control" name="phone_number" placeholder="Enter Your Phone Number">
+                        <input type="text" class="form-control" name="phone_number" placeholder="Enter Your Phone Number">
                     </div>
+
+
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" class="form-control" name="currentPassword" placeholder="Enter Your Current Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" class="form-control" name="newPassword" placeholder="Enter Your New Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Confirm New Password</label>
+                        <input type="password" class="form-control" name="email" placeholder="Confirm Your New Password">
+                    </div>
+                    <!-- /.card-body -->
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Save Changes</button>
-                        <a href="{{ route('password.change') }}" class="btn btn-secondary">Change Password</a>
                     </div>
-                    <!-- /.card-body -->
                 </div>
             </form>
         </div>

@@ -4,6 +4,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -79,8 +82,23 @@ Route::put('/category/{category}', [\App\Http\Controllers\CategoryController::cl
 Route::get('/', [IndexController::class, 'index']);
 
 
+Route::get('/user',[\App\Http\Controllers\AccountController::class,'edit']);
 
-Route::get('/user', function () {
+/*Route::get('/user', function () {
     return view('user.userindex');
-});
+});*/
+
+
+//Route::post('/update-account', [AccountController::class, 'updateAccount'])->name('update.account');
+Route::put('/update-account/{id}', [AccountController::class, 'updateAccount'])->name('update.account');
+Route::get('/user/userindex', [AccountController::class, 'index']);
+Route::get('/user/userorder', [OrderController::class, 'index']);
+
+// Display change password form
+Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('password.change');
+
+// Handle change password form submission
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.update');
+
+
 
