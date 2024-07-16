@@ -100,5 +100,8 @@ Route::get('/change-password', [UserController::class, 'showChangePasswordForm']
 // Handle change password form submission
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.update');
 
-
+Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart'])
+    ->name('cart.index');
+Route::put('/cart/store', [\App\Http\Controllers\CartController::class, 'store'])
+    ->name('cart.store');
 
