@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -18,31 +19,74 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
-       return view('admin.products.productCreate');
+        $categories = Category::all(); // Fetch all categories
+        return view('admin.products.productCreate', ['categories' => $categories]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
+//    public function store(Request $request)
+//    {
+//
+//        $file = $request->file('productImage');
+//        $products = new Product;
+//        $products->name = $request->productName;
+//        $products->description = $request->productDescription;
+//        $products->price = $request->productPrice;
+//        $products->category = $request->productCategory;
+//        $products->image = $file->getClientOriginalName();
+//
+//        $destinationPath = 'storage'; //upload path
+//        $file->move($destinationPath,$file->getClientOriginalName());
+//
+//        $products->save();
+//        return redirect('admin/product/create')->with('success', 'New Product Created Successfully');
+//    }
     public function store(Request $request)
     {
+        // Validate the request data as needed
+        $request->validate([
+            'productName' => 'required|string|max:255',
+            'productDescription' => 'required|string',
+            'productPrice' => 'required|numeric',
+            'productCategory' => 'required|exists:categories,category_name', // Ensure the category exists in categories table
+            'productImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file validation as needed
+        ]);
 
+        // Handle file upload
         $file = $request->file('productImage');
-        $products = new Product;
-        $products->name = $request->productName;
-        $products->description = $request->productDescription;
-        $products->price = $request->productPrice;
-        $products->category = $request->productCategory;
-        $products->image = $file->getClientOriginalName();
+        $fileName = $file->getClientOriginalName(); // You might want to change how you handle filenames to avoid collisions
 
-        $destinationPath = 'storage'; //upload path
-        $file->move($destinationPath,$file->getClientOriginalName());
+        // Move the uploaded file to storage path
+        $destinationPath = 'storage';
+        $file->move($destinationPath, $fileName);
 
-        $products->save();
+        // Create new Product instance and store data
+        $product = new Product;
+        $product->name = $request->productName;
+        $product->description = $request->productDescription;
+        $product->price = $request->productPrice;
+
+        // Fetch category id based on category_name
+        $category = Category::where('category_name', $request->productCategory)->first();
+        if (!$category) {
+            return redirect()->back()->withErrors(['productCategory' => 'Invalid category selected']);
+        }
+
+        $product->category_id = $category->id; // Assuming 'category_id' is the foreign key in products table
+
+        $product->image = $fileName; // Store the filename, adjust as needed
+
+        $product->save();
+
         return redirect('admin/product/create')->with('success', 'New Product Created Successfully');
     }
+
 
 
     /**

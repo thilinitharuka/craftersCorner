@@ -185,7 +185,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
-            <span class="brand-text font-weight-light">Crafters' Corner</span>
+            <img src="assets/img/appUserLogo.png" alt="Logo"  style="width: 150px; height: auto;" />
         </a>
 
         <!-- Sidebar -->
@@ -220,30 +220,6 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i>
-                            <p>
-                                Products
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/admin/product/create" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Create Product</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/product/show" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Product list</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-circle"></i>
@@ -263,6 +239,29 @@
                                 <a href="{{route('admin.category.list')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Category list</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-circle"></i>
+                            <p>
+                                Products
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/admin/product/create" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create Product</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/product/show" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Product list</p>
                                 </a>
                             </li>
                         </ul>

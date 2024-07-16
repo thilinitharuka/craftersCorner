@@ -74,7 +74,7 @@
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>Rs. {{ $product->price }}</td>
                         <td>{{ $product->category }}</td>
                         <td><img src="{{asset("storage/".$product->image)}}" alt="Product Image" width="100" height="100"></td>
                         <td>

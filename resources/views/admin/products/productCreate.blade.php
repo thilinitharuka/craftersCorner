@@ -56,13 +56,12 @@
                     <div class="form-group">
                         <label for="productCategory">Category</label>
                         <select class="form-control" name="productCategory">
-                            <option value="electronics">Customized Crafts/Gifts</option>
-                            <option value="clothing">Wall Art</option>
-                            <option value="home">Bags & Baskets</option>
-                            <option value="beauty">Paper Quilling Arts</option>
-                            <!-- Add more options based on your specific categories -->
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputFile">File input</label>
                         <div class="input-group">

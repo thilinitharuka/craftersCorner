@@ -63,10 +63,10 @@
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-3 col">
-                        <div class="header-logo" style="color: white; font-family: 'Playfair Display', serif;">
-                            <h2 style="color: white;">Crafters' <br> Corner</h2>
+                        <div class="header-logo">
+{{--                            <img src="{{ asset('img/logo.png') }}" alt="Crafters' Corner Logo" style="width: 100px; height: auto;">--}}
+                            <img src="assets/img/logo.png" alt="Logo"  style="width: 250px; height: auto;" />
                         </div>
-
                     </div>
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="search-element">

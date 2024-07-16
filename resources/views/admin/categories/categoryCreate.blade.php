@@ -37,8 +37,8 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="categoryName">Category Name</label>
-                        <input type="text" class="form-control" name="categoryName" placeholder="Enter product name">
+                        <label for="name">Category Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter product name">
                     </div>
 
 

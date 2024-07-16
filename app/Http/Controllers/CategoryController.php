@@ -28,13 +28,15 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        $categories = new Category;
-        $categories->name = $request->categoryName;
-        $categories->description = $request->categoryDescription;
+        $category = new Category;
+        $category->name = $request->name;
+        $category->description = $request->categoryDescription;
 
-        $categories->save();
+        $category->save();
+
         return redirect('admin/category/create')->with('success', 'New Category Created Successfully');
     }
 
@@ -59,17 +61,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // Validate the request data as needed
         $request->validate([
-            'name' => 'required|string|max:255',
+            'category_name' => 'required|string|max:255',
             'description' => 'required|string',
-
         ]);
 
-        // Update the category with the new data
         $category->update($request->all());
 
-        // Redirect back to the category list or wherever you want
         return redirect()->back()->with('success', 'Category updated successfully!');
     }
 
