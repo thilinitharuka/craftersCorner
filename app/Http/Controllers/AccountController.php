@@ -30,6 +30,7 @@ class AccountController extends Controller
     {
         $user = User::where('id', Auth::id())->first();
         $customer = Customer::where('user_id', Auth::id())->first();
+
         return view('user.userindex', compact(['user','customer']));
     }
 

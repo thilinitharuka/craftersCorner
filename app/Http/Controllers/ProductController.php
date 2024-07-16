@@ -54,7 +54,7 @@ class ProductController extends Controller
             'productName' => 'required|string|max:255',
             'productDescription' => 'required|string',
             'productPrice' => 'required|numeric',
-            'productCategory' => 'required|exists:categories,category_name', // Ensure the category exists in categories table
+            'productCategory' => 'required|exists:categories,id', // Ensure the category exists in categories table
             'productImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file validation as needed
         ]);
 
@@ -73,12 +73,12 @@ class ProductController extends Controller
         $product->price = $request->productPrice;
 
         // Fetch category id based on category_name
-        $category = Category::where('category_name', $request->productCategory)->first();
+        $category = Category::where('id', $request->productCategory)->first();
         if (!$category) {
             return redirect()->back()->withErrors(['productCategory' => 'Invalid category selected']);
         }
 
-        $product->category_id = $category->id; // Assuming 'category_id' is the foreign key in products table
+        $product->category = $category->id; // Assuming 'category_id' is the foreign key in products table
 
         $product->image = $fileName; // Store the filename, adjust as needed
 

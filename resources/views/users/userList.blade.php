@@ -62,8 +62,6 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Address</th>
                     <th scope="col">Image</th>
                     <th scope="col" style="width: 126px;">Action</th>
                 </tr>
@@ -74,8 +72,6 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone_number }}</td>
-                        <td>{{ $user->address }}</td>
                         <td><img src="{{asset("storage/".$user->image)}}" alt="User Image" width="100" height="100"></td>
                         <td>
                             <div style="display: inline-block;">
