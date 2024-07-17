@@ -231,7 +231,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="user/userorder" class="nav-link">
+                        <a href="/user/userorder" class="nav-link">
                             <i class="nav-icon fas fa-circle"></i>
                             <p>
                                 Orders
