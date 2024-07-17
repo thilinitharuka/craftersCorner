@@ -526,8 +526,8 @@
                         <!-- Start single blog -->
                         <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
                             <div class="single-wedge">
-                                <div class="header-logo" >
-                                    <h2 style="color: black;">Crafters' <br> Corner</h2>
+                                <div class="header-logo" style="margin-bottom: 20px;">
+                                    <img src="assets/img/logo2.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
                                 </div>
                                 <p class="about-text">Crafters' Corner celebrates personalized creations with customized crafts, wall art, bags, baskets, and intricate paper quilling arts. Discover unique elegance!
                                 </p>
