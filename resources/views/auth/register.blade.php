@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Crafters' Corner | Register</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,7 +29,8 @@
 <body class="register-page" style="min-height: 570.8px;">
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+{{--        <a href="../../index2.html"><b>Admin</b>LTE</a>--}}
+        <img src="assets/img/logo2.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
     </div>
 
     <div class="card">
