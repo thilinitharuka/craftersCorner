@@ -418,6 +418,14 @@
         <div class="container">
             <h3 class="cart-page-title">Your cart items</h3>
             <div class="row">
+                @if(Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                        Success
+                    </div>
+                @endif
+            </div>
+            <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <form action="{{ route('checkout') }}" method="GET">
                         @csrf

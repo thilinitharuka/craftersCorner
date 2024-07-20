@@ -26,13 +26,13 @@ class StripePaymentController extends Controller
                 $charge = $stripe->charges->create([
                     'source' => $request->stripeToken,
                     'currency' => 'USD',
-                    'amount' => 2049, // Amount in cents
+                    'amount' => $request->grandPrice*100, // Amount in cents
                     'description' => 'wallet',
                 ]);
 
                 if($charge['status'] == 'succeeded') {
                     // Here you can redirect to the desired route with a success message
-                    return redirect()->route('addmoney.paymentstripe')->with('success', 'Payment successful!');
+                    return redirect()->route('cart.index')->with('success', 'Payment successful!');
                 } else {
                     return redirect()->route('addmoney.paymentstripe')->with('error', 'Money not added to wallet!');
                 }

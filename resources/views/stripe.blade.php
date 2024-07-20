@@ -34,7 +34,8 @@
                             </div>
 
                             <div class="mb-3" style="padding-top:20px;">
-                                <h5 class='total'>Total:<span class='amount'>$50.00</span></h5>
+                                <input type="hidden" value="{{$grandPrice}}" name="grandPrice" id="grandPrice" >
+                                <h5 class='total'>Total:<span class='amount'>{{$grandPrice}}</span></h5>
                             </div>
 
                             <div class="mb-3">
