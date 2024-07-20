@@ -6,6 +6,7 @@ use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StripePaymentController;
 
 
 /*
@@ -105,3 +106,5 @@ Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart'])
 Route::put('/cart/store', [\App\Http\Controllers\CartController::class, 'store'])
     ->name('cart.store');
 
+Route::get('stripe',[StripePaymentController::class,'paymentStripe'])->name('addmoney.paymentstripe');
+Route::post('add-money-stripe',[StripePaymentController::class,'postPaymentStripe'])->name('addmoney.stripe');
