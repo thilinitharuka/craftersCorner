@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\CheckoutController;
 
 
 /*
@@ -108,3 +109,9 @@ Route::put('/cart/store', [\App\Http\Controllers\CartController::class, 'store']
 
 Route::get('stripe',[StripePaymentController::class,'paymentStripe'])->name('addmoney.paymentstripe');
 Route::post('add-money-stripe',[StripePaymentController::class,'postPaymentStripe'])->name('addmoney.stripe');
+
+// Route to show the checkout page
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+// Route to handle the checkout process
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');

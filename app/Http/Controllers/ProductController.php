@@ -55,7 +55,7 @@ class ProductController extends Controller
             'productDescription' => 'required|string',
             'productPrice' => 'required|numeric',
             'productCategory' => 'required|exists:categories,id', // Ensure the category exists in categories table
-            'productImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file validation as needed
+            'productImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000', // Adjust file validation as needed
         ]);
 
         // Handle file upload

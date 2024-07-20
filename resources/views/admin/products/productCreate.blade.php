@@ -32,30 +32,49 @@
                     Success
                 </div>
             @endif
+            @if ($errors->any())
+
+                <div class="alert alert-danger">
+
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+
+                    <ul>
+
+                        @foreach ($errors->all() as $error)
+
+                            <li>{{ $error }}</li>
+
+                        @endforeach
+
+                    </ul>
+
+                </div>
+
+            @endif
             <!-- form start -->
             <form method="post" action="{{route('admin.product.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="productName">Product Name</label>
-                        <input type="text" class="form-control" name="productName" placeholder="Enter product name">
+                        <input type="text" class="form-control" name="productName" value="{{ old('productName') }}" placeholder="Enter product name">
                     </div>
 
 
                     <div class="form-group">
                         <label for="productDescription">Description</label>
                         <textarea class="form-control" name="productDescription"
-                                  placeholder="Enter product description"></textarea>
+                                   placeholder="Enter product description">{{ old('productDescription') }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="productPrice">Price</label>
-                        <input type="number" class="form-control" name="productPrice" placeholder="Enter product price">
+                        <input type="number" class="form-control" name="productPrice" value="{{ old('productPrice') }}" placeholder="Enter product price">
                     </div>
 
                     <div class="form-group">
                         <label for="productCategory">Category</label>
-                        <select class="form-control" name="productCategory">
+                        <select class="form-control" name="productCategory" value="{{ old('productCategory') }}">
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
