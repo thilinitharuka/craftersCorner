@@ -32,6 +32,7 @@ class StripePaymentController extends Controller
 
                 if($charge['status'] == 'succeeded') {
                     // Here you can redirect to the desired route with a success message
+                    $request->session()->forget('cart');
                     return redirect()->route('cart.index')->with('success', 'Payment successful!');
                 } else {
                     return redirect()->route('addmoney.paymentstripe')->with('error', 'Money not added to wallet!');

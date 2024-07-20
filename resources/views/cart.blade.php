@@ -421,7 +421,7 @@
                 @if(Session::has('success'))
                     <div class="alert alert-success" role="alert">
                         {{ Session::get('success') }}
-                        Success
+
                     </div>
                 @endif
             </div>
@@ -442,22 +442,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if (!empty($productDetails))
-                                    @foreach ($productDetails as $product)
+                                @if (!empty($cartItems))
+                                    @foreach ($cartItems as $item)
                                         <tr>
                                             <td class="product-thumbnail">
                                                 <a href="#"><img class="img-responsive ml-15px"
-                                                                 src="{{asset('storage/'.$product['image'])}}" alt=""/></a>
+                                                                 src="{{asset('storage/'.$item['image'])}}" alt=""/></a>
                                             </td>
-                                            <td class="product-name"><a href="#">{{$product['name']}}</a></td>
-                                            <td class="product-price-cart"><span class="amount">${{ $product['price'] }} </span></td>
+                                            <td class="product-name"><a href="#">{{$item['name']}}</a></td>
+                                            <td class="product-price-cart"><span class="amount">${{ $item['price'] }} </span></td>
                                             <td class="product-quantity">
                                                 <div class="cart-plus-minus">
                                                     <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                           value="{{ $product['quantity'] }}"/>
+                                                           value="{{ $item['quantity'] }}"/>
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal">{{ $product['total'] }}</td>
+                                            <td class="product-subtotal" data-product-id="{{ $item['product_id'] }}">${{ $item['subTotal'] }}</td>
                                             <td class="product-remove">
                                                 <a href="#"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" onclick="deleteCartItem()"><i class="fa fa-times"></i></a>
@@ -481,7 +481,7 @@
                 <a href="{{ route('checkout') }}" class="btn btn-secondary">Checkout</a>
             </div>
         </div>
-
+    </div>
 </div>
 <!-- /.card-body -->
 
@@ -500,6 +500,25 @@
 <script src="{{asset('user_assets/js/plugins/venobox.min.js')}}"></script>
 <script src="{{asset('user_assets/js/plugins/jquery-ui.min.js')}}"></script>
 <script src="{{asset('user_assets/js/plugins/mailchimp-ajax.js')}}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const qtyInputs = document.querySelectorAll('.qty-input');
+
+        qtyInputs.forEach(input => {
+            input.addEventListener('change', function () {
+                const productId = this.getAttribute('data-product-id');
+                const newQuantity = parseInt(this.value);
+                const unitPrice = parseFloat(this.closest('tr').querySelector('.product-price').getAttribute('data-unit-price'));
+                const newSubtotal = (newQuantity * unitPrice).toFixed(2);
+
+                const subtotalElement = document.querySelector(`.product-subtotal[data-product-id="${productId}"]`);
+                subtotalElement.textContent = `$${newSubtotal}`;
+            });
+        });
+    });
+</script>
+
 
 <!-- Minify Version -->
 <!-- <script src="assets/js/vendor.min.js"></script>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -13,8 +15,10 @@ class IndexController extends Controller
     public function index()
      {
          $products = Product::inRandomOrder()->take(8)->get();
-         $cart = session('cart');
-         $totItemCount = !empty($cart) ? array_sum(array_column($cart, 'quantity')) : 0;
+         /*$cart = session('cart');
+         $totItemCount = !empty($cart) ? array_sum(array_column($cart, 'quantity')) : 0;*/
+         $cartItems = Cart::where('user_id', Auth::id())->get();
+         $totItemCount = $cartItems->sum('quantity');
 //        var_dump($cart);die;
         return view('index',compact('products','totItemCount'));
      }
