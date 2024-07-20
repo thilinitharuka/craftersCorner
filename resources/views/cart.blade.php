@@ -413,7 +413,6 @@
         </div>
     </div>
 
-    <!-- breadcrumb-area end -->
     <!-- Cart Area Start -->
     <div class="cart-main-area pt-100px pb-100px">
         <div class="container">
@@ -466,6 +465,27 @@
         </div>
     </div>
     <!-- Cart Area End -->
+    <div class="form-group">
+        <label for="receiverAddress">Receiver Address</label>
+        <textarea class="form-control" name="receiverAddress"
+                  placeholder="Enter receiver description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="receiverPhone">Receiver Phone Number</label>
+        <input type="number" class="form-control" name="receiverPhone" placeholder="Enter receiver phone number">
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+
+</div>
+<!-- /.card-body -->
+
+<div class="card-footer">
+    <button type="submit" class="btn btn-primary">Submit item</button>
+</div>
 </div>
 <!-- Global Vendor, plugins JS -->
 <!-- JS Files
