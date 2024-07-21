@@ -49,7 +49,8 @@
                                     <li><a href="{{route('login')}}"><i class="fa fa-sign-in"></i>Login</a></li>
                                     <li><a href="{{route('register')}}"><i class="fa fa-user-plus"></i>Register</a></li>
                                 @else
-                                    <li><a href="my-account.html"><i class="fa fa-user-circle"></i> Account</a></li>
+{{--                                    <li><a href="my-account.html"><i class="fa fa-user-circle"></i>Account</a></li>--}}
+                                    <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-user-circle"></i>Account</a></li>
                                     <li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 @endguest
 

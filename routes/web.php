@@ -117,4 +117,6 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/user', [AccountController::class, 'index'])->name('user.dashboard');
+
 
