@@ -30,23 +30,6 @@ class CartController extends Controller
     }
     public function store(Request $request)
     {
-//        var_dump($request->productId);
-       /* $productId = $request->productId;
-        session(['productId' => $request->productId]);
-        // Retrieve the cart from the session or create an empty array if it doesn't exist
-        $cart = $request->session()->get('cart', []);
-
-        // Check if the product is already in the cart
-        if (isset($cart[$productId])) {
-            // Update the quantity
-            $cart[$productId]['quantity'] += 1;
-        } else {
-            // Add the product with a quantity of 1
-            $cart[$productId] = [
-                'product_id' => $productId,
-                'quantity' => 1,
-            ];
-        }*/
 
 
             $product = Product::find($request->productId);
@@ -77,4 +60,6 @@ class CartController extends Controller
 
 //        return 'Product added to cart';
     }
+
+
 }

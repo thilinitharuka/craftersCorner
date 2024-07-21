@@ -115,3 +115,6 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 // Route to handle the checkout process
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+
+Route::get('/', [IndexController::class, 'index'])->name('index');
+

@@ -47,6 +47,6 @@ class LoginController extends Controller
         }
 
         // Default redirect path
-        return redirect('/user');
+        return redirect('/');
     }
 }

@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
     ])->toArray(),
 
     /*

@@ -18,9 +18,9 @@ class IndexController extends Controller
          /*$cart = session('cart');
          $totItemCount = !empty($cart) ? array_sum(array_column($cart, 'quantity')) : 0;*/
          $cartItems = Cart::where('user_id', Auth::id())->get();
-         $totItemCount = $cartItems->sum('quantity');
+//         $totItemCount = $cartItems->sum('quantity');
 //        var_dump($cart);die;
-        return view('index',compact('products','totItemCount'));
+        return view('index',compact('products'));
      }
 
 
