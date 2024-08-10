@@ -40,17 +40,35 @@
                     </ul>
                 </div>
             @endif
-            <!-- form start -->
-            <form method="post" action="{{ route('update.account',auth()->user()) }}">
-                @csrf
-                @method('PUT')
-                <div class="card-body">
-                    <div class="form-row">
+            @forelse($orders as $order)
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Order #{{ $order->id }} - {{ $order->created_at->format('d M Y') }}
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name:</strong> {{ $order->name }}</p>
+                        <p><strong>Address:</strong> {{ $order->order_address }}</p>
+                        <p><strong>Phone Number:</strong> {{ $order->phone_number }}</p>
+{{--                        <p><strong>Status:</strong> {{ $order->status }}</p>--}}
 
-
-                    <!-- /.card-body -->
+                        <h5>Order Details</h5>
+                        <ul>
+                                <?php $total = 0;  ?>
+                            @foreach($order->order_details as $detail)
+                                <li>
+                                    <strong>Product:</strong> {{ $detail->product->name }}<br>
+                                    <strong>Quantity:</strong> {{ $detail->quantity }}<br>
+                                    <strong>Price:</strong> {{ $detail->product->price }}
+                                    <?php $total += $detail->product->price;  ?>
+                                </li>
+                            @endforeach
+                            <li><strong>Total:</strong> {{$total }} </li>
+                        </ul>
+                    </div>
                 </div>
-            </form>
+            @empty
+                <p>You have no orders.</p>
+            @endforelse
         </div>
     </section>
     <!-- /.content -->

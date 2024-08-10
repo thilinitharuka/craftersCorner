@@ -94,7 +94,7 @@ Route::get('/user',[\App\Http\Controllers\AccountController::class,'edit']);
 //Route::post('/update-account', [AccountController::class, 'updateAccount'])->name('update.account');
 Route::put('/update-account/{id}', [AccountController::class, 'updateAccount'])->name('update.account');
 Route::get('/user/userindex', [AccountController::class, 'index']);
-Route::get('/user/userorder', [OrderController::class, 'index']);
+Route::get('/user/userorder', [OrderController::class, 'index'])->name('user.order');
 
 // Display change password form
 Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('password.change');

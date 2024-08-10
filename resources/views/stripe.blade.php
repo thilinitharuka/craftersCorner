@@ -12,14 +12,31 @@
 
 <body>
 <form id="payment-form" action="{!! route('addmoney.stripe') !!}" method="post">
-    @if (Session::has('error'))
-        <font color="red">{{ Session::get('error') }}</font>
-    @endif
-    @csrf
     <div class="container">
 
         <div class='row'>
             <h1>Checkout</h1>
+            @if(Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success') }}
+                    Success
+                </div>
+            @endif
+            @if(Session::has('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ Session::get('error') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @csrf
             <div class='col-md-12'>
                 <div class="card">
                     <div class="card-header">
@@ -27,7 +44,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            @csrf
                             <div class="col-md-6">
                                 <label for="firstName">First Name</label>
                                 <input value="{{$customer->firstName ?? ''}}" type="text" class="form-control"
@@ -79,23 +95,23 @@
                     </div>
                     <div class="card-body">
 
-                            <div class="mb-3">
-                                <label for="card-element">Credit or debit card</label>
-                                <div id="card-element">
-                                    <!-- A Stripe Element will be inserted here. -->
-                                </div>
-                                <!-- Used to display form errors. -->
-                                <div id="card-errors" role="alert"></div>
+                        <div class="mb-3">
+                            <label for="card-element">Credit or debit card</label>
+                            <div id="card-element">
+                                <!-- A Stripe Element will be inserted here. -->
                             </div>
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
 
-                            <div class="mb-3" style="padding-top:20px;">
-                                <input type="hidden" value="{{$grandPrice}}" name="grandPrice" id="grandPrice">
-                                <h5 class='total'>Total:<span class='amount'>{{$grandPrice}}</span></h5>
-                            </div>
+                        <div class="mb-3" style="padding-top:20px;">
+                            <input type="hidden" value="{{$grandPrice}}" name="grandPrice" id="grandPrice">
+                            <h5 class='total'>Total:<span class='amount'>{{$grandPrice}}</span></h5>
+                        </div>
 
-                            <div class="mb-3">
-                                <button class='form-control btn btn-success submit-button' type='submit'>Pay »</button>
-                            </div>
+                        <div class="mb-3">
+                            <button class='form-control btn btn-success submit-button' type='submit'>Pay »</button>
+                        </div>
                     </div>
                 </div>
             </div>

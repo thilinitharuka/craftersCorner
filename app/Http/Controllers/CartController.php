@@ -25,6 +25,7 @@ class CartController extends Controller
                     'subTotal' => $item->product->price * $item->quantity,
                 ];
             });
+
         // Pass the product details and total count to the view
         return view('cart', ['cartItems' => $cartItems]);
     }
@@ -136,7 +137,7 @@ class CartController extends Controller
     {
         if (Auth::check()) {
             // Get the total count of items in the cart
-            $totItemCount = Cart::where('user_id', Auth::id())->sum('quantity');
+            $totItemCount = Cart::where(['user_id'=> Auth::id(),'status'=>0])->sum('quantity');
 
             // Return a JSON response with the total count
             return response()->json([

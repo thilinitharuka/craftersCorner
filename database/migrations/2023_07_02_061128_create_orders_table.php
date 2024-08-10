@@ -16,11 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('order_address');
             $table->string('phone_number');
-            $table->string('product_id');
             $table->string('status');
 //            $table->string('total_amount');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
 //            $table->unsignedBigInteger('shipping_method_id');
 //            $table->foreign('shipping_method_id')->references('id')->on('shipping_methods');
             $table->timestamps();
