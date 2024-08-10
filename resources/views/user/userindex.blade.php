@@ -45,7 +45,12 @@
                 @csrf
                 @method('PUT')
                 <div class="card-body">
-
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="userName">User Name</label>
+                            <input value="{{$user->name ?? ''}}" type="text" class="form-control" name="userName" placeholder="Enter Your User Name">
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstName">First Name</label>

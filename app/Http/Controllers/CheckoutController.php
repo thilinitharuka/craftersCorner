@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -12,7 +14,7 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         // Retrieve the cart from the session
-        $cart = $request->session()->get('cart', []);
+        /*$cart = $request->session()->get('cart', []);
         $grandPrice = 0;
         foreach ($cart as $item) {
             // Fetch the product from the database using the Product model
@@ -22,7 +24,11 @@ class CheckoutController extends Controller
             if ($product) {
                 $grandPrice += $product->price * $item['quantity'];
             }
-        }
+        }*/
+        $grandPrice = Cart::where('user_id', Auth::id())
+            ->join('products', 'carts.product_id', '=', 'products.id')
+            ->selectRaw('SUM(carts.quantity * products.price) as total')
+            ->value('total');
         return view('stripe',compact('grandPrice'));
     }
 

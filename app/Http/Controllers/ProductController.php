@@ -49,6 +49,7 @@ class ProductController extends Controller
 //    }
     public function store(Request $request)
     {
+
         // Validate the request data as needed
         $request->validate([
             'productName' => 'required|string|max:255',
@@ -79,7 +80,6 @@ class ProductController extends Controller
         }
 
         $product->category = $category->id; // Assuming 'category_id' is the foreign key in products table
-
         $product->image = $fileName; // Store the filename, adjust as needed
 
         $product->save();
@@ -94,7 +94,8 @@ class ProductController extends Controller
      */
     public function show()
     {
-        $products = Product::all();
+        $products = Product::with('categories')->get();
+//        dd($products);
         return view('admin/products/productList', compact('products'));
 
     }
@@ -104,7 +105,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.productEdit',compact('product'));
+        $categories = Category::all(); // Fetch all categories
+        return view('admin.products.productEdit',compact('product','categories'));
     }
 
     /**

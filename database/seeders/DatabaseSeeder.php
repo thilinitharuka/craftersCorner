@@ -38,14 +38,14 @@ class DatabaseSeeder extends Seeder
             'name'=>'Earrings',
             'description'=>'test',
             'price'=>'250',
-            'category'=>'Jewelry',
+            'category'=>Category::inRandomOrder()->value('id'),
             'image'=>'645e5bdda09fb93a4f6f1f06-sadnyy-2-pcs-aesthetic-canvas-tote-bags.jpg',
         ]);
         Product::create([
             'name'=>'Necklace',
             'description'=>'test',
             'price'=>'2500',
-            'category'=>'Jewelry',
+            'category'=>Category::inRandomOrder()->value('id'),
             'image'=>'645e5bdda09fb93a4f6f1f06-sadnyy-2-pcs-aesthetic-canvas-tote-bags.jpg',
         ]);
     }

@@ -15,13 +15,13 @@ return new class extends Migration
             Schema::create('customers', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Assuming you link customers to users
-                $table->string('firstName');
-                $table->string('lastName');
-                $table->string('address');
-                $table->string('city');
-                $table->string('zip_code');
-                $table->string('country')->default('Sri Lanka');
-                $table->string('phone_number');
+                $table->string('firstName')->nullable()->default(null);;
+                $table->string('lastName')->nullable()->default(null);;
+                $table->string('address')->nullable()->default(null);;
+                $table->string('city')->nullable()->default(null);;
+                $table->string('zip_code')->nullable()->default(null);;
+                $table->string('country')->nullable()->default(null);;
+                $table->string('phone_number')->nullable()->default(null);;
                 $table->timestamps();
             });
     }

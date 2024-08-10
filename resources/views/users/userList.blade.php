@@ -7,11 +7,11 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Users</h1>
-                    @if(Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
+{{--                    @if(Session::has('success'))--}}
+{{--                        <div class="alert alert-success" role="alert">--}}
+{{--                            {{ Session::get('success') }}--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -59,20 +59,21 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Image</th>
+{{--                    <th scope="col">Image</th>--}}
                     <th scope="col" style="width: 126px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php $n=1; @endphp
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
+                        <td>{{ $n++ }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td><img src="{{asset("storage/".$user->image)}}" alt="User Image" width="100" height="100"></td>
+{{--                        <td><img src="{{asset("storage/".$user->image)}}" alt="User Image" width="100" height="100"></td>--}}
                         <td>
                             <div style="display: inline-block;">
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>

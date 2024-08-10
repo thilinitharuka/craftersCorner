@@ -69,7 +69,9 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-3 col">
                         <div class="header-logo">
-                            <img src="assets/img/logo.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
+                            <a href="/">
+                            <img  src="assets/img/logo.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
+                            </a>
                         </div>
 
 
@@ -633,7 +635,7 @@
         <div class="modal-content">
             <div class="modal-body text-center">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="pe-7s-close"></i></button>
-                <div class="tt-modal-messages">
+                <div class="tt-modal-messages" id="modelMessage">
                     <i class="pe-7s-check"></i> Added to cart successfully!
                 </div>
                 {{--<div class="tt-modal-product">

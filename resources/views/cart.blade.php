@@ -46,7 +46,7 @@
                                             </td>
                                             <td class="product-subtotal" data-product-id="{{ $item['product_id'] }}">${{ $item['subTotal'] }}</td>
                                             <td class="product-remove">
-                                                <a href="#" onclick="deleteCartItem()"><i class="fa fa-times"></i></a>
+                                                <a href="#" onclick="deleteCartItem(this,{{ $item['product_id'] }})"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -77,27 +77,71 @@
             var txt = $(this).text();
             var unitPrice = $(this).closest('tr').find('.product-price-cart').attr('data-amount')
             var qty = $(this).closest('tr').find('.product-quantity input').val()
+            var productId = $(this).closest('tr').attr('data-product-id');
             $(this).closest('tr').find('.product-subtotal').text(`$${qty*unitPrice}`)
 
-            /*
-            var productId = $(this).closest('tr').attr('data-product-id');
-
+            //update cart
             $.ajax({
-                url:'cart/store',
-                type:'PUT',
-                data:{
-                    productId:productId
+                url: 'cart/update',
+                type: 'PUT',
+                data: {
+                    productId: productId,
+                    qty:qty
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success:function(){
-                    $('#exampleModal-Cart').modal('show')
-                    var count = parseInt($('#itemCount').text())
-                    $('#itemCount').text(count+1)
+                complete:function (){
+                    fetchCartItemCount();
                 }
-            })*/
+            });
         })
     });
+
+    function deleteCartItem(obj,productId){
+        $.ajax({
+            url: 'cart/destroy',
+            type: 'PUT',
+            data: {
+                productId: productId,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success) {
+                    $(obj).closest('tr').remove();
+                }
+                $('#exampleModal-Cart').modal('show');
+                $('#modelMessage').html('<i class="pe-7s-check"></i>' + response.message);
+            },
+            error: function(xhr) {
+                var response = xhr.responseJSON;
+                var errorMessage = response.message || 'An error occurred. Please try again.';
+                $('#exampleModal-Cart').modal('show');
+                $('#modelMessage').html('<i class="pe-7s-close"></i>' + errorMessage);
+            },
+            complete:function (){
+                fetchCartItemCount();
+            }
+        });
+    }
+
+    function fetchCartItemCount() {
+        $.ajax({
+            url: '/cart/count',
+            type: 'GET',
+            success: function(response) {
+                if (response.success) {
+                    $('#itemCount').text(response.totalItemCount); // Update the cart item count in the UI
+                } else {
+                    console.log(response.message); // Log any error message
+                }
+            },
+            error: function(xhr) {
+                console.error('An error occurred:', xhr.responseText);
+            }
+        });
+    }
 </script>
 @endsection

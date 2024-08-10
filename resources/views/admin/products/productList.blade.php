@@ -7,11 +7,11 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Products</h1>
-                    @if(Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
+{{--                    @if(Session::has('success'))--}}
+{{--                        <div class="alert alert-success" role="alert">--}}
+{{--                            {{ Session::get('success') }}--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -59,7 +59,7 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
@@ -69,17 +69,24 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php $n=1; @endphp
                 @foreach ($products as $product)
                     <tr>
-                        <td>{{ $product->id }}</td>
+                        <td>{{ $n++ }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>Rs. {{ $product->price }}</td>
-                        <td>{{ $product->category }}</td>
-                        <td><img src="{{asset("storage/".$product->image)}}" alt="Product Image" width="100" height="100"></td>
+                        @if($product->categories)
+                            <td>{{ $product->categories->name }}</td>
+                        @else
+                            <td></td>
+                        @endif
+                        <td><img src="{{asset("storage/".$product->image)}}" alt="Product Image" width="100"
+                                 height="100"></td>
                         <td>
                             <div style="display: inline-block;">
-                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('products.edit', $product->id) }}"
+                                   class="btn btn-primary btn-sm">Edit</a>
                             </div>
                             <div style="display: inline-block;">
                                 <form action="{{ route('products.destroy', $product->id) }}" method="POST">

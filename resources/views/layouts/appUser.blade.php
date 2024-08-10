@@ -186,7 +186,7 @@
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
 {{--            <span class="brand-text font-weight-light">Crafters' Corner</span>--}}
-            <img src="assets/img/appUserLogo.png" alt="Logo"  style="width: 150px; height: auto;" />
+            <img src="{{asset('assets/img/appUserLogo.png')}}" alt="Logo"  style="width: 150px; height: auto;" />
         </a>
 
         <!-- Sidebar -->

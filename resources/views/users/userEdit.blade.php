@@ -59,7 +59,16 @@
                         <input type="text" class="form-control" name="name" placeholder="Enter user name"
                                value="{{ old('name', $user->name) }}">
                     </div>
-
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name</label>
+                            <input value="{{$customer->firstName ?? ''}}" type="text" class="form-control" name="firstName" placeholder="Enter Your First Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name</label>
+                            <input value="{{$customer->lastName?? '' }}" type="text" class="form-control" name="lastName" placeholder="Enter Your Last Name">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="usersEmail">Email Address</label>
                         <input type="email" class="form-control" name="email" placeholder="Enter email address"
@@ -70,17 +79,17 @@
                     <div class="form-group">
                         <label for="usersPhoneNumber">Phone Number</label>
                         <input type="text" class="form-control" name="phone_number" placeholder="Enter phone number"
-                               value="{{ old('phoneNumber', $user->phone_number) }}">
+                               value="{{ old('phoneNumber', $customer->phone_number ?? '') }}">
                     </div>
 
                     <div class="form-group">
                         <label for="usersAddress">Address</label>
                         <input type="text" class="form-control" name="address" placeholder="Enter address"
-                               value="{{ old('address', $user->address) }}">
+                               value="{{ old('address', $customer->address ?? '') }}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
+                    <div class="form-group" style="display: none;">
+                        <label for="exampleInputFile">Profile picture</label>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="userImage">
@@ -92,7 +101,7 @@
                         </div>
                     </div>
 
-                    <div class="form-check">
+                    <div class="form-check" style="display: none;">
                         <input type="checkbox" class="form-check-input"
                                name="exampleCheck1" {{ old('exampleCheck1', $user->exampleCheck1) ? 'checked' : '' }}>
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>

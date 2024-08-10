@@ -20,7 +20,10 @@ class AccountController extends Controller
      */
     public function index()
     {
+        $user = User::where('id', Auth::id())->first();
+        $customer = Customer::where('user_id', Auth::id())->first();
 
+        return view('user.userindex', compact(['user','customer']));
     }
 
     /**
@@ -38,6 +41,7 @@ class AccountController extends Controller
     {
         $validatedData = $request->validate([
             'user_id'=>$id,
+            'userName' => 'required|string',
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|email',
@@ -80,7 +84,7 @@ class AccountController extends Controller
             ['id' => $userId],
             [
                 'id' => $userId,
-               'name' => $validatedData['firstName'] . ' ' . $validatedData['lastName'],
+               'name' => $validatedData['userName'] ,
                'email' => $validatedData['email'],
                 // Handle password update if necessary
 //                 'password' => Hash::make($validatedData['password']), // Example of hashing new password

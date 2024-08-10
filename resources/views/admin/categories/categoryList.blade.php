@@ -7,11 +7,6 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Categories</h1>
-                    @if(Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -59,16 +54,17 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col" style="width: 126px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php $n=1; @endphp
                 @foreach ($categories as $category)
                     <tr>
-                        <td>{{ $category->id }}</td>
+                        <td>{{ $n++ }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
                         <td>

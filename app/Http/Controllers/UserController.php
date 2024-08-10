@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -78,8 +79,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-//        dd($user);
-        return view('users.userEdit',compact('user'));
+//        dd($user->id);
+        $customer = Customer::where('user_id', $user->id)->first();
+//        dd($customer);
+        return view('users.userEdit',compact('user','customer'));
     }
 
     /**
@@ -89,14 +92,39 @@ class UserController extends Controller
     {
         // Validate the request data as needed
         $request->validate([
+//            'firstName' => 'required|string',
+//            'lastName' => 'required|string',
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone_number' => 'required|numeric',
-            'address' => 'required|string|max:255',
+//            'phone_number' => 'required|numeric',
+//            'address' => 'required|string|max:255',
         ]);
 
         // Update the user with the new data
-        $user->update($request->all());
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+        ]);
+
+        /*update customer table*/
+        $customer = Customer::find($user->id);
+
+            $customer = Customer::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'user_id' => $user->id,
+                    'firstName' =>  $request->firstName,
+                    'lastName' =>  $request->lastName,
+//                'email' => $request->email,
+                    'address' => $request->address,
+                    'city' => $customer->city ?? '',
+                    'zip_code' => $customer->zip_code ?? '',
+                    'phone_number' => $request->phone_number,
+                    // Handle password update if necessary
+//                 'password' => Hash::make($validatedData['password']), // Example of hashing new password
+                ]
+            );
+
 
         // Redirect back to the user list or wherever you want
         return redirect()->back()->with('success', 'User updated successfully!');

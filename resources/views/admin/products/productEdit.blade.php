@@ -75,23 +75,11 @@
                     <div class="form-group">
                         <label for="productCategory">Category</label>
                         <select class="form-control" name="category">
-                            <option
-                                value="electronics" {{ old('category', $product->category) == 'electronics' ? 'selected' : '' }}>
-                                Personalized Creations
-                            </option>
-                            <option
-                                value="clothing" {{ old('category', $product->category) == 'clothing' ? 'selected' : '' }}>
-                                Home Deco
-                            </option>
-                            <option
-                                value="home" {{ old('category', $product->category) == 'home' ? 'selected' : '' }}>
-                                Gifts and Souvenirs
-                            </option>
-                            <option
-                                value="beauty" {{ old('category', $product->category) == 'beauty' ? 'selected' : '' }}>
-                                Stationery and Paper Good
-                            </option>
-                            <!-- Add more options based on your specific categories -->
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{  old('category', $product->category) == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 

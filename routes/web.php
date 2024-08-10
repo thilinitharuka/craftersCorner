@@ -102,10 +102,17 @@ Route::get('/change-password', [UserController::class, 'showChangePasswordForm']
 // Handle change password form submission
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.update');
 
+
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart'])
     ->name('cart.index');
+Route::get('/cart/count', [\App\Http\Controllers\CartController::class, 'cartCount'])
+    ->name('cart.count');
 Route::put('/cart/store', [\App\Http\Controllers\CartController::class, 'store'])
     ->name('cart.store');
+Route::put('/cart/update', [\App\Http\Controllers\CartController::class, 'update'])
+    ->name('cart.update');
+Route::put('/cart/destroy', [\App\Http\Controllers\CartController::class, 'destroy'])
+    ->name('cart.destroy');
 
 Route::get('stripe',[StripePaymentController::class,'paymentStripe'])->name('addmoney.paymentstripe');
 Route::post('add-money-stripe',[StripePaymentController::class,'postPaymentStripe'])->name('addmoney.stripe');

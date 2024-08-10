@@ -98,7 +98,9 @@
                                                 </a>
                                             </div>
                                             <div class="content">
-                                                <span class="category">{{ $product->category }}</span>
+                                                @if($product->categories)
+                                                <span class="category">{{ $product->categories->name }}</span>
+                                                @endif
                                                 <h5 class="title">
                                                     {{ $product->name }}
                                                 </h5>
@@ -107,7 +109,7 @@
                                                 </span>
                                             </div>
                                             <div class="actions">
-                                                <button onclick="addToCart('{{$product->id}}');" title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                <button onclick="addToCart('{{$product->id}}');" title="Add To Cart" class="action add-to-cart" {{--data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"--}}><i
                                                         class="pe-7s-shopbag"></i></button>
                                                 <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
@@ -131,20 +133,33 @@
 
 @section('script')
 <script>
-    function addToCart(productId){
+    function addToCart(productId) {
         $.ajax({
-            url:'cart/store',
-            type:'PUT',
-            data:{productId:productId},
+            url: 'cart/store',
+            type: 'PUT',
+            data: {
+                productId: productId,
+                quantity: 1 // You can adjust this if quantity is dynamic
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success:function(){
-                $('#exampleModal-Cart').modal('show')
-                var count = parseInt($('#itemCount').text())
-                $('#itemCount').text(count+1)
+            success: function(response) {
+                if (response.success) {
+                    var count = parseInt($('#itemCount').text());
+                    $('#itemCount').text(count + 1); // Adjust if you want to increment by more
+                }
+                $('#exampleModal-Cart').modal('show');
+                $('#modelMessage').html('<i class="pe-7s-check"></i>' + response.message);
+            },
+            error: function(xhr) {
+                var response = xhr.responseJSON;
+                var errorMessage = response.message || 'An error occurred. Please try again.';
+                $('#exampleModal-Cart').modal('show');
+                $('#modelMessage').html('<i class="pe-7s-close"></i>' + errorMessage);
             }
-        })
+        });
     }
+
 </script>
 @endsection
