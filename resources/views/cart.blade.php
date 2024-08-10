@@ -58,15 +58,16 @@
                 </div>
             </div>
         </div>
-        <div class="cart-shiping-update-wrapper">
+        <div class="cart-shiping-update-wrapper d-flex justify-content-end align-items-center mt-4">
             <div class="cart-shiping-update">
-                <a href="#">Continue Shopping</a>
+                <a href="{{ route('index') }}" class="btn btn-outline-primary">Continue Shopping</a>
             </div>
-            <div class="cart-clear">
-{{--                <button type="submit" class="btn btn-primary">Checkout</button>--}}
-                <a href="{{ route('checkout') }}" class="btn btn-secondary">Checkout</a>
+            <div class="cart-clear ml-2">
+                <a href="{{ route('checkout') }}" class="btn btn-primary" style="margin-right: 85px;">Checkout</a>
             </div>
         </div>
+
+
     </div>
 @endsection
 @section('script')
