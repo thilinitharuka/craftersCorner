@@ -157,7 +157,7 @@
                         <ul>
                             <li class="dropdown"><a href="#">Home</a> </li>
                             <li class="dropdown"><a href="#">Shop</a> </li>
-                            <li class="dropdown"><a href="#">Custom Craft Corner</a> </li>
+                            <li class="nav-item"><a href="{{ route('custom.craft.corner') }}">Custom Craft Corner</a></li>
                             <li class="dropdown"><a href="#">About Us</a> </li>
                             <li class="dropdown"><a href="#">Contact Us</a> </li>
                         </ul>

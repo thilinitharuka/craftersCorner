@@ -270,6 +270,29 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-circle"></i>
                             <p>
+                                Customers Orders
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/admin/customers/orders" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Customer's Order List </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/product/show" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Product list</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-circle"></i>
+                            <p>
                                 Users
                                 <i class="right fas fa-angle-left"></i>
                             </p>

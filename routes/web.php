@@ -8,6 +8,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerOrderControlller ;
 
 
 /*
@@ -36,6 +37,9 @@ Route::post('/admin/product/store',[ProductController::class,'store'])
 
 Route::get('/admin/product/show',[ProductController::class,'show'])
     ->name('admin.product.show');
+
+Route::get('/admin/customers/orders',[CustomerOrderControlller::class,'show'])
+    ->name('admin.customers.orders');
 
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
     ->name('products.edit');
@@ -125,5 +129,12 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/user', [AccountController::class, 'index'])->name('user.dashboard');
+
+Route::get('/custom-craft-corner', function () {
+    return view('customcraftcorner'); 
+})->name('custom.craft.corner');
+
+
+
 
 
