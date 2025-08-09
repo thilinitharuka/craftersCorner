@@ -8,7 +8,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CustomerOrderControlller ;
+use App\Http\Controllers\CustomerOrderController ;
+use App\Http\Controllers\ImageGenerationController;
 
 
 /*
@@ -38,7 +39,7 @@ Route::post('/admin/product/store',[ProductController::class,'store'])
 Route::get('/admin/product/show',[ProductController::class,'show'])
     ->name('admin.product.show');
 
-Route::get('/admin/customers/orders',[CustomerOrderControlller::class,'show'])
+Route::get('/admin/customers/orders',[CustomerOrderController::class,'show'])
     ->name('admin.customers.orders');
 
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
@@ -131,8 +132,21 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/user', [AccountController::class, 'index'])->name('user.dashboard');
 
 Route::get('/custom-craft-corner', function () {
-    return view('customcraftcorner'); 
+    return view('customcraftcorner');
 })->name('custom.craft.corner');
+
+// Public routes
+Route::get('/image-generation', [ImageGenerationController::class, 'index'])->name('image-generation.index');
+Route::post('/image-generation/generate', [ImageGenerationController::class, 'generate'])->name('image-generation.generate');
+Route::get('/image-generation/status/{id}', [ImageGenerationController::class, 'status'])->name('image-generation.status');
+Route::get('/my-images', [ImageGenerationController::class, 'userImages'])->name('image-generation.my-images');
+
+// Admin routes (protect with auth middleware)
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/generated-images', [ImageGenerationController::class, 'adminIndex'])->name('admin.generated-images.index');
+    Route::get('/generated-images/stats', [ImageGenerationController::class, 'adminStats'])->name('admin.generated-images.stats');
+    Route::delete('/generated-images/{id}', [ImageGenerationController::class, 'adminDelete'])->name('admin.generated-images.delete');
+});
 
 
 

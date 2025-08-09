@@ -128,7 +128,7 @@
 @endsection
 @section('script')
 <script>
-    const API_URL = "https://b8c3349cfcbe.ngrok-free.app/generate";
+    const API_URL = "https://1bd551e3b7ad.ngrok-free.app/generate";
 
 
 // Get references to all the HTML elements
