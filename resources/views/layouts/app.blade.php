@@ -278,13 +278,7 @@
                             <li class="nav-item">
                                 <a href="/admin/customers/orders" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Customer's Order List </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/product/show" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Product list</p>
+                                    <p>Customer's Order List</p>
                                 </a>
                             </li>
                         </ul>
