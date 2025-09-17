@@ -97,6 +97,7 @@ Route::get('/user',[\App\Http\Controllers\AccountController::class,'edit']);
 Route::put('/update-account/{id}', [AccountController::class, 'updateAccount'])->name('update.account');
 Route::get('/user/userindex', [AccountController::class, 'index']);
 Route::get('/user/userorder', [OrderController::class, 'index'])->name('user.order');
+Route::get('/user/customizedorder', [OrderController::class, 'customizedOrders'])->name('user.customizedorder');
 
 // Display change password form
 Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('password.change');
@@ -121,6 +122,9 @@ Route::post('add-money-stripe',[StripePaymentController::class,'postPaymentStrip
 
 // Route to show the checkout page
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+// Checkout for generated image
+Route::get('/checkout/image/{id}', [CheckoutController::class, 'checkoutImage'])->name('checkout.image');
+
 
 // Route to handle the checkout process
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');

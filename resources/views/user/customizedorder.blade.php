@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appUser')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Generated Images</h1>
+                    <h1 class="m-0">My Customized Orders</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -29,11 +29,11 @@
                 <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>User Name</th>
-                    <th>Email</th>
                     <th>Image</th>
                     <th>Created At</th>
-                    <th>Approve</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Order</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,8 +41,6 @@
                 @foreach ($images as $image)
                     <tr>
                         <td>{{ $n++ }}</td>
-                        <td>{{ $image->user->name ?? 'N/A' }}</td>
-                        <td>{{ $image->user->email ?? 'N/A' }}</td>
                         <td>
                             <img src="{{ $image->image_base64 }}"
                                  alt="Generated Image" width="120" height="120">
@@ -50,28 +48,28 @@
                         <td>{{ $image->created_at->format('Y-m-d H:i') }}</td>
                         <td>
                             @if(!$image->is_approved)
-                                <form action="{{ route('generated-images.approve', $image->id) }}" method="POST" class="d-flex align-items-center">
-                                    @csrf
-                                    <div class="input-group">
-                                        <input style="width: 100px;" type="text" name="price" class="form-control" placeholder="Enter Price"
-                                               value="{{ old('price') }}">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-primary">Approve</button>
-                                        </div>
-                                    </div>
-
-                                    {{-- Show validation error for price --}}
-                                    @error('price')
-                                    <small class="text-danger d-block">{{ $message }}</small>
-                                    @enderror
-                                </form>
-
+                                <span class="badge badge-warning">Pending</span>
                             @else
-                                Rs. {{ $image->price ?? '-' }}
+                                <span class="badge badge-success">Approved</span>
+                            @endif
+                        </td>
+                        <td> Rs. {{ $image->price ?? '-' }}</td>
+                        <td>
+                            @if($image->is_paid)
+                                <span class="badge badge-success">Paid</span>
+                            @else
+                                @if($image->is_approved)
+                                    <form action="{{ route('generated-images.approve', $image->id) }}" method="POST">
+                                        @csrf
+                                        <a href="{{ route('checkout.image', $image->id) }}"
+                                           class="btn btn-primary btn-sm">Pay</a>
+                                    </form>
+                                @else
+                                    <button disabled type="submit" class="btn btn-primary btn-sm">Pay</button>
+                                @endif
                             @endif
                         </td>
                     </tr>
-
                 @endforeach
                 </tbody>
             </table>

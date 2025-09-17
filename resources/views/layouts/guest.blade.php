@@ -70,7 +70,7 @@
                     <div class="col-lg-3 col">
                         <div class="header-logo">
                             <a href="/">
-                            <img  src="assets/img/logo.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
+                            <img  src="/assets/img/logo.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
                             </a>
                         </div>
 
@@ -405,7 +405,7 @@
                         <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
                             <div class="single-wedge">
                                 <div class="header-logo" style="margin-bottom: 20px;">
-                                    <img src="assets/img/logo2.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
+                                    <img src="/assets/img/logo2.png" alt="Crafters' Corner Logo" style="width: 250px; height: auto;">
                                 </div>
                                 <p class="about-text">Crafters' Corner celebrates personalized creations with customized crafts, wall art, bags, baskets, and intricate paper quilling arts. Discover unique elegance!
                                 </p>
@@ -657,12 +657,12 @@
                 <div class="tt-modal-messages">
                     <i class="pe-7s-check"></i> Added to Wishlist successfully!
                 </div>
-                <div class="tt-modal-product">
-                    <div class="tt-img">
-                        <img src="assets/images/product-image/1.webp" alt="Modern Smart Phone">
-                    </div>
-                    <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>
-                </div>
+{{--                <div class="tt-modal-product">--}}
+{{--                    <div class="tt-img">--}}
+{{--                        <img src="assets/images/product-image/1.webp" alt="Modern Smart Phone">--}}
+{{--                    </div>--}}
+{{--                    <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

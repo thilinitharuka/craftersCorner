@@ -41,15 +41,18 @@ class GeneratedImageController extends Controller
         return view('admin.generated-images.index', compact('images'));
     }
 
-    public function approve($id)
+    public function approve(Request $request,$id)
     {
+        $request->validate([
+            'price' => 'required|numeric|min:0',
+        ]);
         $image = \App\Models\GeneratedImage::with('user')->findOrFail($id);
 
-        $image->update(['is_approved' => true]);
+        $image->update(['is_approved' => true,'price' => $request->price]);
 
         // Send email to image owner
         if ($image->user) {
-            Mail::to($image->user->email)->send(new ImageApprovedMail($image));
+//            Mail::to($image->user->email)->send(new ImageApprovedMail($image));
         }
 //        dd($image);
         return redirect()->back()->with('success', 'Image approved successfully!');

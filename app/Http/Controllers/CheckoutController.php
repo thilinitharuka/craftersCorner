@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Customer;
+use App\Models\GeneratedImage;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,26 @@ class CheckoutController extends Controller
             ->value('total');
         return view('stripe',compact('grandPrice','user','customer'));
     }
+
+
+
+    public function checkoutImage($id)
+    {
+        $user = Auth::user();
+        $customer = Customer::where('user_id', $user->id)->first();
+
+        $image = GeneratedImage::where('id', $id)
+            ->where('user_id', $user->id)
+            ->firstOrFail();
+        $image->update([
+            'is_paid' => 1
+        ]);
+
+        $grandPrice = $image->price;
+
+        return view('stripe', compact('grandPrice', 'user', 'customer', 'image'));
+    }
+
 
     // Method to handle the checkout process
     public function process(Request $request)
