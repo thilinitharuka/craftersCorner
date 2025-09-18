@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index()
      {
-         $products = Product::inRandomOrder()->take(8)->get();
+         $products = Product::inRandomOrder()->take(20)->get();
          /*$cart = session('cart');
          $totItemCount = !empty($cart) ? array_sum(array_column($cart, 'quantity')) : 0;*/
          $cartItems = Cart::where('user_id', Auth::id())->get();

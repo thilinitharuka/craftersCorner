@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GeneratedImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -48,10 +49,12 @@ Route::put('/products/{product}', [ProductController::class, 'update'])
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])
     ->name('products.destroy');
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::delete('/home/product/show', [ProductController::class, 'destroy'])
+    ->name('product.show');
 
 Route::get('/users/list',[UserController::class,'index'])
     ->name('users.list');
@@ -84,6 +87,8 @@ Route::put('/category/{category}', [\App\Http\Controllers\CategoryController::cl
     ->name('categories.update');
 
 Route::get('/', [IndexController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+
 
 
 Route::get('/user',[\App\Http\Controllers\AccountController::class,'edit']);
