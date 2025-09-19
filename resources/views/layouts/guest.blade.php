@@ -470,10 +470,13 @@
                                 <h4 class="footer-herading">Categories</h4>
                                 <div class="footer-links">
                                     <!-- News letter area -->
-                                    <p class="address">Customized crafts/Gifts</p>
-                                    <p class="phone"><a href="tel:0123456789">Wall Art</a></p>
-                                    <p class="mail"><a href="mailto:demo@example.com">Bags & Baskets</a></p>
-                                    <p class="mail"><a href="https://demo@example.com">Paper qulling Arts</a></p>
+                                    <p class="address">Paper Crafts</p>
+                                    <p class="address">Jewelry</p>
+                                    <p class="address">Home Decor</p>
+                                    <p class="address">Personalized Gifts</p>
+                                    <p class="address">Bags and purses</p>
+
+
                                     <!-- News letter area  End -->
                                 </div>
                             </div>
