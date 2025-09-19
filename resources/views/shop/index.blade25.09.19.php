@@ -24,11 +24,11 @@
 
                             <!-- Price Range -->
                             <h5 class="mb-3">Price Range</h5>
-                            <div class="mb-3">
-                                <input type="number" name="min_price" class="form-control mb-2"
-                                       placeholder="Minimum Price" value="{{ request('min_price') }}">
+                            <div class="d-flex mb-3">
+                                <input type="number" name="min_price" class="form-control me-2"
+                                       placeholder="Min" value="{{ request('min_price') }}">
                                 <input type="number" name="max_price" class="form-control"
-                                       placeholder="Maximum Price" value="{{ request('max_price') }}">
+                                       placeholder="Max" value="{{ request('max_price') }}">
                             </div>
 
                             <!-- Sort -->
@@ -40,17 +40,9 @@
                                 <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>Latest</option>
                             </select>
 
-                            <div class="d-flex" style="gap: 0;">
-                                <button type="submit"
-                                        class="btn w-50"
-                                        style="background-color: #4285f4; color: white; border: none; padding: 8px 10px; font-weight: 500; border-radius: 0; margin-right: 2px;">
-                                    Apply Filters
-                                </button>
-                                <a href="{{ route('shop.index') }}"
-                                   class="btn w-50"
-                                   style="background-color: #6c757d; color: white; border: none; padding: 8px 10px; font-weight: 500; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 0;">
-                                    Clear
-                                </a>
+                            <div class="d-flex">
+                                <button type="submit" class=" btn-secondary w-50 me-2">Apply Filters</button>
+                                <a href="{{ route('shop.index') }}" class=" btn-outline-danger w-50">Clear</a>
                             </div>
                         </form>
                     </div>
@@ -61,8 +53,7 @@
                 <div class="col-lg-9">
                     <div class="row mb-n-30px">
                         @forelse($products as $product)
-{{--                            <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">--}}
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                            <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
                                 <div class="product">
                                     <span class="badges"><span class="new">New</span></span>
                                     <div class="thumb">
