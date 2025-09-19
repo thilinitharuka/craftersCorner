@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\GeneratedImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
@@ -28,9 +30,10 @@ use App\Http\Controllers\ImageGenerationController;
 //    return view('index');
 //});
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+//Route::get('/admin', function () {
+//    return view('admin.index');
+//});
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/admin/product/create', [ProductController::class, 'create']);
 
@@ -55,6 +58,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::delete('/home/product/show', [ProductController::class, 'destroy'])
     ->name('product.show');
+
+// routes/web.php
+Route::get('/product/{id}', [ShopController::class, 'show'])->name('product.show');
+
 
 Route::get('/users/list',[UserController::class,'index'])
     ->name('users.list');
@@ -87,6 +94,7 @@ Route::put('/category/{category}', [\App\Http\Controllers\CategoryController::cl
     ->name('categories.update');
 
 Route::get('/', [IndexController::class, 'index']);
+Route::get('/search', [IndexController::class, 'search'])->name('search');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 
 
@@ -166,6 +174,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 //    Route::get('/generated-images', [GeneratedImageController::class, 'index'])->name('generated-images.index');
 
 });
+
+Route::post('/products/{product}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
 

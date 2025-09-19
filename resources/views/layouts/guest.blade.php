@@ -40,20 +40,17 @@
                         </div>
                     </div>
                     <div class="col d-none d-lg-block">
-                        <div class="top-nav">
+                        <div class="top-nav" style="padding: 10px 15px;">
                             <ul>
-                                <li><a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a></li>
-                                <li><a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i> crafters'corner@gmail.com</a></li>
-
+                                <li><a href="tel:0123456789" style="white-space: nowrap; padding: 5px 10px;"><i class="fa fa-phone"></i> +012 3456 789</a></li>
+                                <li><a href="mailto:demo@example.com" style="padding: 5px 10px;"><i class="fa fa-envelope-o"></i> crafters'corner@gmail.com</a></li>
                                 @guest
-                                    <li><a href="{{route('login')}}"><i class="fa fa-sign-in"></i>Login</a></li>
-                                    <li><a href="{{route('register')}}"><i class="fa fa-user-plus"></i>Register</a></li>
+                                    <li><a href="{{route('login')}}" style="padding: 5px 10px;"><i class="fa fa-sign-in"></i> Login</a></li>
+                                    <li><a href="{{route('register')}}" style="padding: 5px 10px;"><i class="fa fa-user-plus"></i> Register</a></li>
                                 @else
-{{--                                    <li><a href="my-account.html"><i class="fa fa-user-circle"></i>Account</a></li>--}}
-                                    <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-user-circle"></i>Account</a></li>
-                                    <li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                    <li><a href="{{ route('user.dashboard') }}" style="padding: 5px 10px;"><i class="fa fa-user-circle"></i> Account</a></li>
+                                    <li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="padding: 5px 10px;"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 @endguest
-
                             </ul>
                         </div>
                     </div>
@@ -78,18 +75,19 @@
                     </div>
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="search-element">
-                            <form action="#">
-                                <input type="text" placeholder="Search" />
-                                <button><i class="pe-7s-search"></i></button>
+                            <form action="{{ route('search') }}" method="GET">
+                                <input type="text" name="query" placeholder="Search" value="{{ request('query') }}">
+                                <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
+
                         </div>
                     </div>
                     <div class="col-lg-3 col">
                         <div class="header-actions">
                             <!-- Single Wedge Start -->
-                            <a href="#offcanvas-wishlist" class="header-action-btn offcanvas-toggle">
-                                <i class="pe-7s-like"></i>
-                            </a>
+{{--                            <a href="#offcanvas-wishlist" class="header-action-btn offcanvas-toggle">--}}
+{{--                                <i class="pe-7s-like"></i>--}}
+{{--                            </a>--}}
                             <!-- Single Wedge End -->
                             <a href="{{route('cart.index')}}" class="header-action-btn header-action-btn-cart pr-0">
                                 <i class="pe-7s-shopbag"></i>
@@ -155,7 +153,7 @@
                 <div class="header-nav">
                     <div class="main-menu position-relative">
                         <ul>
-                            <li class="dropdown"><a href="#">Home</a> </li>
+                            <li class="dropdown"><a href="{{route('index')}}">Home</a> </li>
                             <li class="dropdown"><a href="{{route('shop.index')}}">Shop</a> </li>
                             <li class="nav-item"><a href="{{ route('custom.craft.corner') }}">Custom Craft Corner</a></li>
                             <li class="dropdown"><a href="#">About Us</a> </li>
@@ -183,48 +181,48 @@
     <div class="offcanvas-overlay"></div>
     <!-- offcanvas overlay end -->
     <!-- OffCanvas Wishlist Start -->
-    <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
-        <div class="inner">
-            <div class="head">
-                <span class="title">Wishlist</span>
-                <button class="offcanvas-close">×</button>
-            </div>
-            <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.webp" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Modern Smart Phone</a>
-                            <span class="quantity-price">1 x <span class="amount">$21.86</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.webp" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Bluetooth Headphone</a>
-                            <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.webp" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Smart Music Box</a>
-                            <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="foot">
-                <div class="buttons">
-                    <a href="wishlist.html" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- OffCanvas Wishlist End -->
+{{--    <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">--}}
+{{--        <div class="inner">--}}
+{{--            <div class="head">--}}
+{{--                <span class="title">Wishlist</span>--}}
+{{--                <button class="offcanvas-close">×</button>--}}
+{{--            </div>--}}
+{{--            <div class="body customScroll">--}}
+{{--                <ul class="minicart-product-list">--}}
+{{--                    <li>--}}
+{{--                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.webp" alt="Cart product Image"></a>--}}
+{{--                        <div class="content">--}}
+{{--                            <a href="single-product.html" class="title">Modern Smart Phone</a>--}}
+{{--                            <span class="quantity-price">1 x <span class="amount">$21.86</span></span>--}}
+{{--                            <a href="#" class="remove">×</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.webp" alt="Cart product Image"></a>--}}
+{{--                        <div class="content">--}}
+{{--                            <a href="single-product.html" class="title">Bluetooth Headphone</a>--}}
+{{--                            <span class="quantity-price">1 x <span class="amount">$13.28</span></span>--}}
+{{--                            <a href="#" class="remove">×</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.webp" alt="Cart product Image"></a>--}}
+{{--                        <div class="content">--}}
+{{--                            <a href="single-product.html" class="title">Smart Music Box</a>--}}
+{{--                            <span class="quantity-price">1 x <span class="amount">$17.34</span></span>--}}
+{{--                            <a href="#" class="remove">×</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--            <div class="foot">--}}
+{{--                <div class="buttons">--}}
+{{--                    <a href="wishlist.html" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <!-- OffCanvas Wishlist End -->--}}
     <!-- OffCanvas Cart Start -->
     <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
         <div class="inner">
@@ -652,25 +650,25 @@
     </div>
 </div>
 <!-- Modal wishlist -->
-<div class="modal customize-class fade" id="exampleModal-Wishlist" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="pe-7s-close"></i></button>
-                <div class="tt-modal-messages">
-                    <i class="pe-7s-check"></i> Added to Wishlist successfully!
-                </div>
+{{--<div class="modal customize-class fade" id="exampleModal-Wishlist" tabindex="-1" aria-hidden="true">--}}
+{{--    <div class="modal-dialog modal-dialog-centered">--}}
+{{--        <div class="modal-content">--}}
+{{--            <div class="modal-body text-center">--}}
+{{--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="pe-7s-close"></i></button>--}}
+{{--                <div class="tt-modal-messages">--}}
+{{--                    <i class="pe-7s-check"></i> Added to Wishlist successfully!--}}
+{{--                </div>--}}
 {{--                <div class="tt-modal-product">--}}
 {{--                    <div class="tt-img">--}}
 {{--                        <img src="assets/images/product-image/1.webp" alt="Modern Smart Phone">--}}
 {{--                    </div>--}}
 {{--                    <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>--}}
 {{--                </div>--}}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal compare -->
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+{{--<!-- Modal compare -->--}}
 <div class="modal customize-class fade" id="exampleModal-Compare" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

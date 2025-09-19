@@ -7,13 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    use HasFactory;
-
     protected $table = 'customers';
 
     protected $fillable = [
-        'user_id','firstName','lastName', 'email', 'password', 'address', 'phone_number', 'customer_status','city','zip_code'
+        'user_id','firstName','lastName','address','phone_number','city','zip_code'
     ];
 
-    // Optionally define relationships with other models
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
+

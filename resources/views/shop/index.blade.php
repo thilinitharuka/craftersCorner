@@ -79,6 +79,15 @@
                                         <h5 class="title">{{ $product->name }}</h5>
                                         <span class="price"><span class="new">Rs. {{ $product->price }}</span></span>
                                     </div>
+                                    <div class="actions">
+                                        <button onclick="addToCart('{{$product->id}}');" title="Add To Cart" class="action add-to-cart" {{--data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"--}}><i
+                                                class="pe-7s-shopbag"></i></button>
+{{--                                        <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i--}}
+{{--                                                class="pe-7s-like"></i></button>--}}
+                                        {{--                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>--}}
+                                        {{--                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i--}}
+                                        {{--                                                    class="pe-7s-refresh-2"></i></button>--}}
+                                    </div>
                                 </div>
                             </div>
                         @empty
@@ -92,4 +101,36 @@
         </div>
     </div>
 
+@endsection
+@section('script')
+    <script>
+        function addToCart(productId) {
+            $.ajax({
+                url: 'cart/store',
+                type: 'PUT',
+                data: {
+                    productId: productId,
+                    quantity: 1 // You can adjust this if quantity is dynamic
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.success) {
+                        var count = parseInt($('#itemCount').text());
+                        $('#itemCount').text(count + 1); // Adjust if you want to increment by more
+                    }
+                    $('#exampleModal-Cart').modal('show');
+                    $('#modelMessage').html('<i class="pe-7s-check"></i>' + response.message);
+                },
+                error: function(xhr) {
+                    var response = xhr.responseJSON;
+                    var errorMessage = response.message || 'An error occurred. Please try again.';
+                    $('#exampleModal-Cart').modal('show');
+                    $('#modelMessage').html('<i class="pe-7s-close"></i>' + errorMessage);
+                }
+            });
+        }
+
+    </script>
 @endsection

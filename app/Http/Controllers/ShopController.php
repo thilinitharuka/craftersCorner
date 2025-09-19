@@ -42,5 +42,21 @@ class ShopController extends Controller
 
         return view('shop.index', compact('products', 'categories'));
     }
+
+    // ShopController.php
+    public function show($id)
+    {
+        $product = Product::with(['categories', 'reviews.customer'])->findOrFail($id);
+        $categories = Category::all();
+
+        // ✅ Related products: same category, exclude current product, limit 4
+        $relatedProducts = Product::where('category', $product->category)
+            ->where('id', '!=', $product->id)
+            ->take(4)
+            ->get();
+
+        return view('shop.show', compact('product', 'categories','relatedProducts'));
+    }
+
 }
 

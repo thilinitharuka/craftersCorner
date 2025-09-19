@@ -23,6 +23,18 @@ class IndexController extends Controller
         return view('index',compact('products'));
      }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->get();
+
+        return view('index', compact('products', 'query'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

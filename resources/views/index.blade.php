@@ -92,7 +92,7 @@
                                                 <span class="new">New</span>
                                             </span>
                                             <div class="thumb">
-                                                <a href="single-product.html" class="image">
+                                                <a href="{{route('product.show',$product->id)}}" class="image">
                                                     <img style="width:270px;height: 274px;"  src="{{asset('storage/'.$product->image)}}" class="img-fluid" alt="">
                                                     {{--                                             <img class="hover-image" src="assets/images/product-image/1.webp" alt="Product" />--}}
                                                 </a>
@@ -111,8 +111,8 @@
                                             <div class="actions">
                                                 <button onclick="addToCart('{{$product->id}}');" title="Add To Cart" class="action add-to-cart" {{--data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"--}}><i
                                                         class="pe-7s-shopbag"></i></button>
-                                                <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
-                                                        class="pe-7s-like"></i></button>
+{{--                                                <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i--}}
+{{--                                                        class="pe-7s-like"></i></button>--}}
 {{--                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>--}}
                                                 {{--                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i--}}
                                                 {{--                                                    class="pe-7s-refresh-2"></i></button>--}}
