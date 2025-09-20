@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\GeneratedImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
@@ -178,6 +179,12 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::post('/products/{product}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
+Route::get('/reports/customers', [ReportController::class, 'customerReport'])
+    ->name('reports.customers');
+Route::get('/reports/sales', [ReportController::class, 'sales'])->name('reports.sales');
+// Product report
+Route::get('/reports/products', [ReportController::class, 'productReport'])->name('reports.products');
+Route::get('/reports/orders', [ReportController::class, 'orderReport'])->name('reports.orders');
 
 
 

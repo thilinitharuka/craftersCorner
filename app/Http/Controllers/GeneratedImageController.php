@@ -52,7 +52,7 @@ class GeneratedImageController extends Controller
 
         // Send email to image owner
         if ($image->user) {
-//            Mail::to($image->user->email)->send(new ImageApprovedMail($image));
+            Mail::to($image->user->email)->send(new ImageApprovedMail($image));
         }
 //        dd($image);
         return redirect()->back()->with('success', 'Image approved successfully!');
