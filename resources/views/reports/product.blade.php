@@ -1,9 +1,31 @@
 @extends('layouts.app')
-
 @section('content')
+    <style>
+        @media print {
+            .print-button {
+                display: none !important;
+            }
+            .print-header {
+                display: block !important;
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10px;
+            }
+        }
+        @media screen {
+            .print-header {
+                display: none;
+            }
+        }
+    </style>
     <div class="container mt-4">
+        <div class="print-header">
+            <h1>Crafters' Corner</h1>
+        </div>
         <h2>Product Reports</h2>
-
         <div class="row mt-4">
             <div class="col-md-3">
                 <div class="card text-white bg-primary mb-3">
@@ -14,7 +36,6 @@
                 </div>
             </div>
         </div>
-
         <h4 class="mt-5">Products per Category</h4>
         <table class="table table-bordered">
             <thead class="table-dark">
@@ -32,7 +53,6 @@
             @endforeach
             </tbody>
         </table>
-
         <h4 class="mt-5">Top 5 Reviewed Products</h4>
         <table class="table table-bordered">
             <thead class="table-dark">
@@ -50,7 +70,6 @@
             @endforeach
             </tbody>
         </table>
-
         <h4 class="mt-5">Unsold Products (Never Ordered)</h4>
         <table class="table table-bordered">
             <thead class="table-dark">
@@ -73,7 +92,7 @@
             </tbody>
         </table>
     </div>
-    <div>
+    <div class="print-button">
         <div class="row">
             <button onclick="window.print()" style="margin:auto;background-color: #4285f4; color: white; border: none; padding: 8px 10px; font-weight: 500; border-radius: 0; " type="button" class="btn btn-primary">Print</button>
         </div>
