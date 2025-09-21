@@ -171,10 +171,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/custom-craft-corner', function () {
         return view('customcraftcorner');
     })->name('custom.craft.corner');
-    Route::post('/generated-images', [GeneratedImageController::class, 'store'])->name('generated-images.store');
 //    Route::get('/generated-images', [GeneratedImageController::class, 'index'])->name('generated-images.index');
 
 });
+    Route::post('/generated-images', [GeneratedImageController::class, 'store'])->name('generated-images.store');
 
 Route::post('/products/{product}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 

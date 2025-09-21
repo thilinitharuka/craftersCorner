@@ -63,7 +63,7 @@
             @forelse($unsoldProducts as $product)
                 <tr>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->category }}</td>
+                    <td>{{ $product->categories ? $product->categories->name : 'N/A' }}</td>
                 </tr>
             @empty
                 <tr>
@@ -72,5 +72,10 @@
             @endforelse
             </tbody>
         </table>
+    </div>
+    <div>
+        <div class="row">
+            <button onclick="window.print()" style="margin:auto;background-color: #4285f4; color: white; border: none; padding: 8px 10px; font-weight: 500; border-radius: 0; " type="button" class="btn btn-primary">Print</button>
+        </div>
     </div>
 @endsection

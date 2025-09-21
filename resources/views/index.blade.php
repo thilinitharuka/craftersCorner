@@ -71,7 +71,7 @@
                     <!-- Tab Start -->
                     <div class="tab-slider d-md-flex justify-content-md-between align-items-md-center">
                         <ul class="product-tab-nav nav justify-content-start align-items-center">
-                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#newarrivals">New Arrivals</button>
+                            <li class="nav-item"><button style="display: none" class="nav-link" data-bs-toggle="tab" data-bs-target="#newarrivals">New Arrivals</button>
                             </li>
                         </ul>
                     </div>

@@ -276,12 +276,6 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin/customers/orders" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Customer's Order List</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="/admin/generated-images" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Customized Order List</p>
